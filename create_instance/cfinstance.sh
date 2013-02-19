@@ -68,7 +68,7 @@ for server in $servers; do
 
 	# Log into the admin page
 	echo -n "Logging in..."
-	$curl_cmd --referer "$cfadmin/" -d "cfadminPassword=${pass_hash}&requestedURL=%2FCFIDE%2Fadministrator%2Fenter.cfm%3F&salt=${salt}&submit=Login" "${cfadmin}/enter.cfm" > /dev/null
+	$curl_cmd --referer "$cfadmin/" -d "cfadminUserId=admin&cfadminPassword=${pass_hash}&requestedURL=%2FCFIDE%2Fadministrator%2Fenter.cfm%3F&salt=${salt}&submit=Login" "${cfadmin}/enter.cfm" > /dev/null
 	echo "done."
 
 	# Loop through the instances we want to create

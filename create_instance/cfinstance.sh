@@ -2,20 +2,50 @@
 
 # Creates ColdFusion9 server instances automatically
 # You must have rhino (https://developer.mozilla.org/en-US/docs/Rhino) installed on the originating computer to use it.  It should be in your repos. 
-
+#
+# Run by manually editing the variables below or using "-i instancename" & "-s servername" (can be repeated as many times as necessary, eg: "-i instance1 -i instance2")
+#
 # Name of the instances you want to create (space delimited)
-instances="instance1 instance2"
+#instances="instance1 instance2"
 
 # Hostnames of the servers to create instances on (space delimited)
-servers="server1 server2"
+#servers="server1 server2"
 
-# Password for your ColdFusion enterprise "admin" user
-password="cfadminpassword"
+while getopts "i:s:" Option
+do
+  case $Option in
+    i|I ) # Instance Name
+        instances="$OPTARG $instances"
+        ;;
+    s|S ) # Instance Name
+        servers="$OPTARG $servers"
+        ;;
+    * )
+        echo "I don't have anything implemented for \"-$Option\".\n"
+        ;;
+  esac
+done
+shift $(($OPTIND - 1))
+
+echo "Instances: $instances"
+echo "Servers: $servers"
 
 # Verify we have rhino installed
 if [ "$(which rhino)" == "" ]; then
 	echo "Rhino must be installed to run this script. Exiting."
 	exit 1
+fi
+
+# Check for missing instances
+if [ "$instances" == "" ]; then
+        echo "No instances defined. Exiting"
+        exit 1
+fi
+
+# Check for missing servers
+if [ "$servers" == "" ]; then
+        echo "No servers defined. Exiting"
+        exit 1
 fi
 
 # Loop through the servers

@@ -6,15 +6,26 @@ for name in $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var/struct/va
   echo "  - name: $name"
   echo "    user: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='username']/string" ${filename})"
   cryptpass=$(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='password']/string" ${filename})
-  echo "    password: $(~/github/coldfusion_automator/coldfusion_password.py -d $cryptpass)"
+  echo "    cryptedpassword: $cryptpass"
   driver=$(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='DRIVER']/string" ${filename})
-  if [ "$driver" != "Oracle JDBC Driver" ]; then
+  if echo $driver | grep -qi "MSSQL"; then
     echo "    driver: mssql"
     echo "    host: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='host']/string" ${filename})"
     echo "    port: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='port']/string" ${filename})"
     echo "    database: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='database']/string" ${filename})"
-  else
+  elif [ "$driver" == "Oracle JDBC Driver" ]; then
     echo "    driver: oracle"
     echo "    uri: !str \"$(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='url']/string" ${filename} | sed 's/ //g')\""
+  elif [ "$driver" == "Oracle" ]; then
+    echo "    driver: oracle-cf"
+    echo "    host: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='host']/string" ${filename})"
+    echo "    port: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='port']/string" ${filename})"
+    echo "    database: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='SID']/string" ${filename})"
+  else
+    echo "    driver: $driver"
+    echo "    host: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='host']/string" ${filename})"
+    echo "    port: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='port']/string" ${filename})"
+    echo "    database: $(xmlstarlet sel -t -v "//wddxPacket/data/array/struct/var[@name='${name}']/struct/var[@name='urlmap']/struct/var[@name='database']/string" ${filename})"
   fi
 done
+

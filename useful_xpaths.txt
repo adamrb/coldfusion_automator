@@ -1,0 +1,19 @@
+J2EE Configuration: /opt/jrun4/servers/$instancename/cfusion.ear/cfusion.war/WEB-INF/cfusion/lib/neo-runtime.xml
+
+	//data/array/struct/var[@name='session']/struct/var[@name='usej2eesession']/boolean/@value
+
+UUID for CFToken: /opt/jrun4/servers/$instancename/cfusion.ear/cfusion.war/WEB-INF/cfusion/lib/neo-clientstore.xml
+
+	//wddxPacket/data/array/struct/var[@name='uuidToken']/boolean/@value
+
+
+Datasource:
+	Name: //wddxPacket/data/array/struct/var/struct/var[@name='NAME']/string
+	Username: //wddxPacket/data/array/struct/var/struct/var[@name='username']/string
+	Password: //wddxPacket/data/array/struct/var/struct/var[@name='password']/string
+	Driver: //wddxPacket/data/array/struct/var/struct/var[@name='DRIVER']/string
+	Host: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='host']/string
+	Port: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='port']/string
+	Database: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='database']/string
+	URL: //wddxPacket/data/array/struct/var[@name='DataCache']/struct/var[@name='url']/string
+	

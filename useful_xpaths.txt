@@ -7,7 +7,8 @@ UUID for CFToken: /opt/jrun4/servers/$instancename/cfusion.ear/cfusion.war/WEB-I
 	//wddxPacket/data/array/struct/var[@name='uuidToken']/boolean/@value
 
 
-Datasource:
+Datasource: /opt/jrun4/servers/$instancename/cfusion.ear/cfusion.war/WEB-INF/cfusion/lib/neo-datasource.xml
+
 	Name: //wddxPacket/data/array/struct/var/struct/var[@name='NAME']/string
 	Username: //wddxPacket/data/array/struct/var/struct/var[@name='username']/string
 	Password: //wddxPacket/data/array/struct/var/struct/var[@name='password']/string
@@ -15,5 +16,4 @@ Datasource:
 	Host: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='host']/string
 	Port: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='port']/string
 	Database: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='database']/string
-	URL: //wddxPacket/data/array/struct/var[@name='DataCache']/struct/var[@name='url']/string
-	
+	URL: //wddxPacket/data/array/struct/var/struct/var[@name='url']/string

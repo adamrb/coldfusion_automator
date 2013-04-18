@@ -17,3 +17,20 @@ Datasource: /opt/jrun4/servers/$instancename/cfusion.ear/cfusion.war/WEB-INF/cfu
 	Port: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='port']/string
 	Database: //wddxPacket/data/array/struct/var/struct/var[@name='urlmap']/struct/var[@name='database']/string
 	URL: //wddxPacket/data/array/struct/var/struct/var[@name='url']/string
+
+Jrun Proxy Service Status:  /opt/jrun4/servers/$instancename/SERVER-INF/jrun.xml
+
+  /jrun-server/service[@class='jrun.servlet.jrpp.JRunProxyService']/attribute[@name='deactivated']
+
+Jrun Proxy Port: /opt/jrun4/servers/$instancename/SERVER-INF/jrun.xml
+
+  /jrun-server/service[@class='jrun.servlet.jrpp.JRunProxyService']/attribute[@name='port']
+
+Jrun HTTP Port: /opt/jrun4/servers/$pinstancename/SERVER-INF/jrun.xml
+
+  /jrun-server/service[@class='jrun.servlet.http.WebService']/attribute[@name='port']
+
+Mailserver: /opt/jrun4/servers/$instancename/cfusion.ear/cfusion.war/WEB-INF/cfusion/lib/neo-mail.xml
+
+  //data/struct/var[@name='server']/string
+
